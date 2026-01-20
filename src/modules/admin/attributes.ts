@@ -1,3 +1,4 @@
+import {serial , text  , json , timestamp} from "drizzle-orm/pg-core"
 const tableName = "admins";
 const attributes = {
 	id: serial("id").primaryKey(),

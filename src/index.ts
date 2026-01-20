@@ -1,4 +1,4 @@
-import  pool from "./config/db";
+import { pool } from "./config/db";
 import server from "./config/server";
 import env from "./config/env";
 import routeInit from "./routes";
@@ -11,12 +11,11 @@ const startServer = async () => {
     const client = await pool.connect();
     client.release();
     logger.info("✅ Database connected");
-    
+    // Add error handler
+    errorHandler(server);
+
     // Initialize routes
     await routeInit(server);
-
-    // Add error handler (must be last)
-    errorHandler(server);
 
     // Start server
     server.listen(env.PORT, () => {
